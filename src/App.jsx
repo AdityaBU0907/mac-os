@@ -1,6 +1,6 @@
 import { useEffect } from "react"; 
-// UPDATED: Import Contact and Preview
-import { Navbar, Welcome, Dock, Terminal, Finder, Contact, Preview } from "#components"; 
+// UPDATED: Added Safari, Photos, and Trash to imports
+import { Navbar, Welcome, Dock, Terminal, Finder, Contact, Preview, Safari, Photos, Trash } from "#components"; 
 import useWindowStore from "#store/window";
 import useThemeStore from "#store/theme"; 
 
@@ -23,10 +23,17 @@ const App = () => {
 
       {/* --- WINDOWS LAYER --- */}
       {/* These only render when their isOpen state is true */}
+      
+      {/* Utilities */}
       {windows.terminal?.isOpen && <Terminal />}
       {windows.finder?.isOpen && <Finder />}
-      {windows.contact?.isOpen && <Contact />}   {/* Added Contact */}
-      {windows.preview?.isOpen && <Preview />}   {/* Added Preview (for Resume) */}
+      {windows.preview?.isOpen && <Preview />}
+      
+      {/* Apps */}
+      {windows.contact?.isOpen && <Contact />}
+      {windows.safari?.isOpen && <Safari />}    {/* Added Safari */}
+      {windows.photos?.isOpen && <Photos />}    {/* Added Photos */}
+      {windows.trash?.isOpen && <Trash />}      {/* Added Trash */}
 
       <Dock />
     </main>
