@@ -12,3 +12,5 @@ export { default as Finder } from "./Finder";
 //   { id: "github", name: "GitHub", icon: "github.png", canOpen: true },
 //   // ...
 // ];
+export { default as Contact } from "./Contact";
+export { default as Preview } from "./Preview";

@@ -1,28 +1,33 @@
-import { useEffect } from "react"; // <--- Import this
-import { Navbar, Welcome, Dock, Terminal, Finder } from "#components";
+import { useEffect } from "react"; 
+// UPDATED: Import Contact and Preview
+import { Navbar, Welcome, Dock, Terminal, Finder, Contact, Preview } from "#components"; 
 import useWindowStore from "#store/window";
-import useThemeStore from "#store/theme"; // <--- Import the new store
+import useThemeStore from "#store/theme"; 
 
 const App = () => {
   const { windows } = useWindowStore();
-  const { theme } = useThemeStore(); // <--- Get current theme
+  const { theme } = useThemeStore(); 
 
   // --- THE MAGIC SYNC ---
   useEffect(() => {
     const root = window.document.documentElement;
-    // Remove old class
     root.classList.remove("light", "dark");
-    // Add new class
     root.classList.add(theme);
-  }, [theme]); // Runs whenever theme changes
+  }, [theme]); 
 
   return (
     <main className="relative h-screen w-screen overflow-hidden bg-[url('/images/wallpaper.jpg')] bg-cover bg-center font-sans transition-colors duration-500">
-      {/* ... rest of your app ... */}
+      
       <Navbar />
       <Welcome />
+
+      {/* --- WINDOWS LAYER --- */}
+      {/* These only render when their isOpen state is true */}
       {windows.terminal?.isOpen && <Terminal />}
       {windows.finder?.isOpen && <Finder />}
+      {windows.contact?.isOpen && <Contact />}   {/* Added Contact */}
+      {windows.preview?.isOpen && <Preview />}   {/* Added Preview (for Resume) */}
+
       <Dock />
     </main>
   );

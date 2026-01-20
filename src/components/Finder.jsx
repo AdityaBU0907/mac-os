@@ -3,7 +3,7 @@ import Draggable from "react-draggable";
 import { X, Minus, Square, Search, ChevronRight } from "lucide-react";
 import useWindowStore from "#store/window";
 
-// --- ASSETS ( STRICTLY LOCAL ) ---
+// --- ASSETS ---
 const MAC_FOLDER_ICON = "/icons/gicon1.svg"; 
 const FILE_ICON = "/icons/file.svg";         
 
@@ -27,7 +27,6 @@ const SIDEBAR_ITEMS = [
   ]}
 ];
 
-// Content for each folder
 const FOLDER_CONTENT = {
   work: [
     { id: 1, label: "Nike Ecommerce Website", type: "folder" },
@@ -36,7 +35,7 @@ const FOLDER_CONTENT = {
     { id: 4, label: "Portfolio v3 Design", type: "folder" },
   ],
   about: [],
-  // Make sure 'resume.pdf' is inside your 'public' folder!
+  // Ensure this URL is correct!
   resume: [{ id: 99, label: "Aditya_Resume.pdf", type: "pdf", url: "/resume.pdf" }],
   
   github: [{ id: 101, label: "GitHub Profile", type: "link", url: "https://github.com/your-username" }],
@@ -52,7 +51,8 @@ const FOLDER_CONTENT = {
 };
 
 const Finder = () => {
-  const { closeWindow, focusWindow, windows } = useWindowStore();
+  // 1. GET 'openWindow' FROM STORE
+  const { closeWindow, focusWindow, openWindow, windows } = useWindowStore();
   const zIndex = windows.finder?.zIndex || 40;
   const nodeRef = useRef(null);
   const [activeItem, setActiveItem] = useState("work");
@@ -67,32 +67,16 @@ const Finder = () => {
         style={{ zIndex }}
         onMouseDown={() => focusWindow("finder")}
         className="
-          absolute w-[850px] h-[550px]
-          rounded-xl overflow-hidden
-          
-          /* --- THEME (Updated for Light/Dark Mode) --- */
-          /* Light Mode: Frosted White */
-          bg-white/85
-          /* Dark Mode: Frosted Dark Gray */
-          dark:bg-gray-900/80
-          
-          backdrop-blur-3xl 
-          backdrop-saturate-200
-          shadow-2xl
-          
-          /* Border adapts to theme */
+          absolute w-[850px] h-[550px] rounded-xl overflow-hidden
+          bg-white/85 dark:bg-gray-900/80
+          backdrop-blur-3xl backdrop-saturate-200 shadow-2xl
           border border-black/5 dark:border-white/10
-          
           flex font-sans text-sm font-medium transition-colors duration-300
-          
-          /* Text Color Switch */
           text-gray-800 dark:text-gray-200
         "
       >
         {/* --- LEFT SIDEBAR --- */}
         <div className="w-60 bg-gray-50/50 dark:bg-black/20 border-r border-black/5 dark:border-white/10 flex flex-col transition-colors duration-300">
-          
-          {/* Window Controls */}
           <div className="window-header h-14 flex items-center px-5 gap-2 group cursor-default">
             <div onClick={() => closeWindow("finder")} className="w-3 h-3 rounded-full bg-[#ff5f56] hover:brightness-90 cursor-pointer flex items-center justify-center shadow-inner">
                <X size={8} className="text-black/50 opacity-0 group-hover:opacity-100" />
@@ -105,7 +89,6 @@ const Finder = () => {
             </div>
           </div>
 
-          {/* Sidebar Links */}
           <div className="flex-1 overflow-y-auto p-3 space-y-5 scrollbar-hide">
             {SIDEBAR_ITEMS.map((group, index) => (
                 <div key={index}>
@@ -126,12 +109,10 @@ const Finder = () => {
                                     : "text-gray-600 dark:text-gray-400/90 hover:bg-black/5 dark:hover:bg-white/5"}
                             `}
                             >
-                            {/* LOCAL ICON */}
                             <img 
                                 src={item.icon} 
                                 alt={item.label} 
                                 className={`w-4 h-4 object-contain ${activeItem === item.id ? "opacity-100" : "opacity-70 group-hover:opacity-100"}`}
-                                // In Light Mode: Keep icons normal. In Dark Mode: Brighten them or invert if needed.
                                 style={{ filter: activeItem === item.id ? 'none' : 'grayscale(100%)' }}
                             />
                             {item.label}
@@ -144,12 +125,10 @@ const Finder = () => {
           </div>
         </div>
 
-        {/* --- RIGHT MAIN CONTENT AREA --- */}
+        {/* --- RIGHT CONTENT --- */}
         <div className="flex-1 flex flex-col">
-           {/* Toolbar */}
            <div className="h-14 flex items-center justify-between px-8 border-b border-black/5 dark:border-white/5 transition-colors duration-300">
                <div className="flex items-center gap-3 text-lg font-semibold text-gray-800 dark:text-gray-100">
-                   {/* Use Sidebar Icon for Breadcrumb */}
                    <img src={activeGroup?.icon} alt="current" className="w-5 h-5 opacity-80" />
                    <ChevronRight size={16} className="opacity-40" />
                    <span>{activeGroup?.label}</span>
@@ -157,7 +136,6 @@ const Finder = () => {
                <Search size={16} className="text-gray-500 opacity-70" />
            </div>
             
-           {/* Content Grid */}
            <div className="flex-1 overflow-y-auto p-8">
              {currentContent.length > 0 ? (
                 <div className="grid grid-cols-5 gap-x-4 gap-y-10">
@@ -165,14 +143,18 @@ const Finder = () => {
                     <div 
                         key={item.id} 
                         className="flex flex-col items-center gap-2 group cursor-pointer"
-                        // --- CLICK HANDLER ADDED HERE ---
+                        
+                        // 2. UPDATED CLICK LOGIC
                         onClick={() => {
-                            if (item.type === 'pdf' || item.type === 'link') {
+                            if (item.type === 'pdf') {
+                                // OPEN PREVIEW WINDOW
+                                openWindow("preview", { url: item.url, label: item.label });
+                            } else if (item.type === 'link') {
+                                // OPEN NEW TAB
                                 window.open(item.url, '_blank');
                             }
                         }}
                     >
-                        {/* FOLDER ICON */}
                         <img 
                             src={item.type === 'pdf' ? FILE_ICON : MAC_FOLDER_ICON} 
                             alt={item.label} 
@@ -188,7 +170,6 @@ const Finder = () => {
                 ))}
                 </div>
              ) : (
-                 /* Empty State */
                 <div className="h-full flex flex-col items-center justify-center text-gray-500 opacity-40">
                     <img src={activeGroup?.icon || MAC_FOLDER_ICON} className="w-16 h-16 opacity-20 mb-4 grayscale" alt="empty" />
                     <p className="text-lg font-light">Folder is empty</p>
@@ -196,7 +177,6 @@ const Finder = () => {
              )}
            </div>
         </div>
-
       </div>
     </Draggable>
   );
