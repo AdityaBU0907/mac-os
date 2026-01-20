@@ -9,28 +9,28 @@ const SOCIALS = [
     id: "instagram",
     name: "Instagram",
     icon: "/icons/instagram.png", 
-    link: "https://instagram.com/your-handle", 
+    link: "https://instagram.com/aditya_id__", 
     className: "bg-white/5 border-white/10 hover:border-[#E1306C] hover:bg-[#E1306C]/10 hover:shadow-[0_0_20px_rgba(225,48,108,0.2)]" 
   },
   {
     id: "whatsapp", 
     name: "WhatsApp", 
     icon: "/icons/whatsapp.png", 
-    link: "https://wa.me/919876543210", 
+    link: "https://wa.me/917366874487", 
     className: "bg-white/5 border-white/10 hover:border-[#25D366] hover:bg-[#25D366]/10 hover:shadow-[0_0_20px_rgba(37,211,102,0.2)]"
   },
   {
     id: "linkedin",
     name: "LinkedIn",
     icon: "/icons/linkedin.png",
-    link: "https://linkedin.com/in/your-profile", 
+    link: "https://www.linkedin.com/in/aditya-raj-a321921b6/", 
     className: "bg-white/5 border-white/10 hover:border-[#0077b5] hover:bg-[#0077b5]/10 hover:shadow-[0_0_20px_rgba(0,119,181,0.2)]"
   },
   {
     id: "email",
     name: "Send Message",
     icon: "/icons/email.png", 
-    link: "mailto:your-email@gmail.com",
+    link: "mailto:adityabu0907@gmail.com",
     className: "bg-white/5 border-white/10 hover:border-white hover:bg-white/10 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
   },
 ];
