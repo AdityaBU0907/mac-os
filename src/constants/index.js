@@ -504,3 +504,30 @@ const WINDOW_CONFIG = {
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };
+
+
+
+
+
+// // src/constants/index.js
+
+// export const INITIAL_Z_INDEX = 40;
+
+// export const WINDOW_CONFIG = {
+//   // Your existing apps...
+//   terminal: { 
+//     isOpen: false, 
+//     isMinimised: false, 
+//     zIndex: INITIAL_Z_INDEX 
+//   },
+  
+//   // --- ADD THIS SECTION ---
+//   finder: { 
+//     isOpen: false, 
+//     isMinimised: false, 
+//     zIndex: INITIAL_Z_INDEX 
+//   },
+//   // ------------------------
+// };
+
+// // ... existing dockApps export ...
