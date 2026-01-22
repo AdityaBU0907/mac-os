@@ -1,6 +1,6 @@
 # 🍎 macOS Portfolio - Aditya Raj
 
-![Project Banner](public/images/wallpaper.jpg) 
+![Project Banner]([public/images/wallpaper.jpg](https://mac-os-aditya.vercel.app/)) 
 > A fully interactive, macOS-themed developer portfolio built with **React**, **Vite**, and **AI Integration**. 
 > Experience my projects, skills, and resume through a functional "Desktop" environment.
 
