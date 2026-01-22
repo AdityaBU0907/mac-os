@@ -5,7 +5,7 @@ import { getRoastResponse } from "../chatService";
 
 const ChatWindow = ({ onClose }) => {
   const [messages, setMessages] = useState([
-    { text: "System initialized. Ask me about the developer... if you must. 🙄", sender: 'bot' }
+    { text: "Hi! 👋 I'm Aditya's assistant. Ask me about my projects, technical skills, or resume.", sender: 'bot' }
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -104,7 +104,7 @@ const ChatWindow = ({ onClose }) => {
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Terminal size={16} color="#34D399" />
-          <span style={{ fontSize: '14px', fontWeight: 'bold' }}>roast_bot.exe</span>
+          <span style={{ fontSize: '14px', fontWeight: 'bold' }}>Help_bot.exe</span>
         </div>
         <X size={20} style={{ cursor: 'pointer' }} onClick={onClose} />
       </div>
@@ -137,7 +137,7 @@ const ChatWindow = ({ onClose }) => {
         ))}
         {loading && (
           <div style={{ alignSelf: 'flex-start', color: '#888', fontSize: '12px', paddingLeft: '10px' }}>
-            Typing... 💅
+            Typing.█.█.█.█.
           </div>
         )}
         <div ref={scrollRef} />
