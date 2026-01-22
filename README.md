@@ -48,22 +48,3 @@
 
 ---
 
-## ⚡ Getting Started
-
-Follow these steps to run the portfolio on your local machine (Arch users, I know you know this, but for the rest...):
-
-### 1. Clone the Repository
-```bash
-git clone [https://github.com/yourusername/mac-os-portfolio.git](https://github.com/yourusername/mac-os-portfolio.git)
-cd mac-os-portfolio
-2. Install Dependencies
-Bash
-npm install
-3. Configure Environment Variables
-Create a .env file in the root directory and add your keys:
-
-<div align="center">
-
-Made with 🖤 and React by Aditya Styled like macOS, Powered by Arch Linux.
-
-</div>
