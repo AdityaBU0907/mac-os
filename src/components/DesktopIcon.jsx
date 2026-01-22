@@ -55,7 +55,7 @@ const DesktopIcon = ({ onClick }) => {
       >
         {/* ICON IMAGE */}
         <img
-          src="/icons/robot.png"
+          src="/icons/sirii.png"
           alt="Siri"
           draggable={false}
           style={{
