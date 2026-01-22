@@ -1,12 +1,20 @@
-import { useEffect } from "react"; 
-// UPDATED: Added Safari, Photos, and Trash to imports
+import { useEffect, useState } from "react"; // ✅ Added useState
 import { Navbar, Welcome, Dock, Terminal, Finder, Contact, Preview, Safari, Photos, Trash } from "#components"; 
+// 👇 Import your new Bot components
+// If you added them to your index.js, import from "#components". 
+// If not, import relative like this:
+import ChatWindow from "./components/ChatWindow"; 
+import DesktopIcon from "./components/DesktopIcon";
+
 import useWindowStore from "#store/window";
 import useThemeStore from "#store/theme"; 
 
 const App = () => {
   const { windows } = useWindowStore();
   const { theme } = useThemeStore(); 
+  
+  // ✅ Local state for the ChatBot (so you don't have to edit your Store yet)
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   // --- THE MAGIC SYNC ---
   useEffect(() => {
@@ -21,19 +29,27 @@ const App = () => {
       <Navbar />
       <Welcome />
 
+      {/* --- DESKTOP ICONS LAYER --- */}
+      {/* ✅ Placed absolutely on the desktop (Top Left) */}
+      <div className="absolute top-20 left-5 z-10">
+        <DesktopIcon onClick={() => setIsChatOpen(true)} />
+      </div>
+
       {/* --- WINDOWS LAYER --- */}
-      {/* These only render when their isOpen state is true */}
       
-      {/* Utilities */}
+      {/* 1. Existing Store-Managed Windows */}
       {windows.terminal?.isOpen && <Terminal />}
       {windows.finder?.isOpen && <Finder />}
       {windows.preview?.isOpen && <Preview />}
-      
-      {/* Apps */}
       {windows.contact?.isOpen && <Contact />}
-      {windows.safari?.isOpen && <Safari />}    {/* Added Safari */}
-      {windows.photos?.isOpen && <Photos />}    {/* Added Photos */}
-      {windows.trash?.isOpen && <Trash />}      {/* Added Trash */}
+      {windows.safari?.isOpen && <Safari />}
+      {windows.photos?.isOpen && <Photos />}
+      {windows.trash?.isOpen && <Trash />}
+
+      {/* 2. ✅ The New ChatBot Window (Managed Locally) */}
+      {isChatOpen && (
+        <ChatWindow onClose={() => setIsChatOpen(false)} />
+      )}
 
       <Dock />
     </main>
