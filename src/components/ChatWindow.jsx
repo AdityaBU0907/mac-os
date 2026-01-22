@@ -51,10 +51,13 @@ const ChatWindow = ({ onClose }) => {
 
     const userText = input;
     setInput("");
+    
+    // Add user message to UI
     setMessages(prev => [...prev, { text: userText, sender: 'user' }]);
     setLoading(true);
 
-    const botReply = await getRoastResponse(userText);
+    // ✅ FIX: Pass 'messages' (history) as the second argument
+    const botReply = await getRoastResponse(userText, messages);
 
     setMessages(prev => [...prev, { text: botReply, sender: 'bot' }]);
     setLoading(false);
