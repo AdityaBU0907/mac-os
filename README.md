@@ -111,11 +111,3 @@ Open a Pull Request
 Made with 🖤 and React by Aditya Styled like macOS, Powered by Arch Linux.
 
 </div>
-
-
-### **How to add a screenshot:**
-
-1.  Take a screenshot of your website.
-2.  Name it `wallpaper.jpg` (or similar).
-3.  Put it in your `public/images/` folder.
-4.  The README will automatically pick it up because of the line `![Project Banner](public/images/wallpaper.jpg)`.
