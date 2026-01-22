@@ -5,7 +5,7 @@ import { getRoastResponse } from "../chatService";
 
 const ChatWindow = ({ onClose }) => {
   const [messages, setMessages] = useState([
-    { text: "Hi! 👋 I'm Aditya's assistant. Ask me about my projects, technical skills, or resume.", sender: 'bot' }
+    { text: "Hi! 👋 I'm Aditya's assistant. Ask me about his projects, technical skills, or resume.", sender: 'bot' }
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -137,7 +137,7 @@ const ChatWindow = ({ onClose }) => {
         ))}
         {loading && (
           <div style={{ alignSelf: 'flex-start', color: '#888', fontSize: '12px', paddingLeft: '10px' }}>
-            Typing.█.█.█.█.
+            Typing....
           </div>
         )}
         <div ref={scrollRef} />
